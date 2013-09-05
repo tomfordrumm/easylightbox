@@ -1,0 +1,8 @@
+.easylb{
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 400px;
+    height: 400px;
+    z-index: 10000000;
+}

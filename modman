@@ -1,0 +1,6 @@
+app/code/local/SnowCommerce/EasyLightBox app/code/local/SnowCommerce/EasyLightBox
+app/design/adminhtml/default/default/layout/sc_easylb.xml app/design/adminhtml/default/default/layout/sc_easylb.xml
+app/design/frontend/base/default/layout/sc_easylb.xml app/design/frontend/base/default/layout/sc_easylb.xml
+app/design/frontend/base/default/template/snowcommerce/easylightbox app/design/frontend/base/default/template/snowcommerce/easylightbox
+app/etc/modules/SnowCommerce_EasyLightBox.xml app/etc/modules/SnowCommerce_EasyLightBox.xml
+skin/frontend/default/default/css/easylightbox.css skin/frontend/default/default/css/easylightbox.css

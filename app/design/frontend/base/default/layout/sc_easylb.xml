@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <name>css/easylightbox.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="sc_easylb/lightbox" name="lightbox_front"
+                   template="snowcommerce/easylightbox/lightbox.phtml"/>
+        </reference>
+    </default>
+</layout>

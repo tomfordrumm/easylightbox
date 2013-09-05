@@ -1,0 +1,87 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: svatoslavzilicev
+ * Date: 05.09.13
+ * Time: 13:14
+ * To change this template use File | Settings | File Templates.
+ */
+$lightboxes = $this->getLightboxes();
+$fontes = array(
+    '1' => '12px',
+    '2' => '16px',
+    '3' => '24px'
+);
+?>
+<?php foreach ($lightboxes as $lightbox): ?>
+<div class="easylb" id='easylb-fon' style="display: none" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')">
+    <div class="sc_lightbox" id="lightbox-<?php echo$lightbox->getId() ?>" style="background: <?php echo $lightbox->getBodyColor() ?>">
+        <div class="close" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')">X</div>
+        <div class="content-lightbox">
+            <div class="title" style="color: <?php echo $lightbox->getTitleTextColor() ?>; <?php if ($lightbox->getTitleTextBold() == 1){echo "font-weight:bold;";} ?> font-size: <?php echo $fontes[$lightbox->getTitleTextSize()] ?>">
+                <span><?php echo $lightbox->getTitleText() ?></span>
+            </div>
+            <div class="addition-text" style="color: <?php echo $lightbox->getActionTextColor(); ?> <?php if ($lightbox->getActionTextBold() == 1){echo "font-weight:bold";} ?>">
+                <span ><?php echo $lightbox->getActionText() ?></span>
+            </div>
+        </div>
+        <form action="<?php $this->getActionForForm($lightbox->getSignUpBox()); ?>" method="post">
+            <input type="email" title="Email Address" placeholder="Email Address">
+            <button type="submit" style="background: <?php echo $lightbox->getActionButtonColor() ?>; color: <?php echo $lightbox->getActionButtonTextColor() ?>"><?php echo $lightbox->getActionButton()?></button>
+        </form>
+    </div>
+        <script>
+
+            Event.observe(window,'load',function(){
+                var cookie = getCookie('<?php echo 'lightbox-'.$lightbox->getId()?>');
+                if (!cookie){
+                    setTimeout(function(){
+                        $('easylb-fon').style.display = 'block';
+                    },'<?php if ($lightbox->getTimeout() != null){ echo $lightbox->getTimeout();} else {echo '0';} ?>')
+
+                }
+            });
+
+
+        </script>
+</div>
+<?php endforeach;?>
+<script>
+    function closeELB(id,ttl){
+        if (ttl){
+            var date = new Date( new Date().getTime() + ttl*1000 );
+            setCookie('lightbox-'+id,'1',date.toUTCString());
+        } else {
+            setCookie('lightbox-'+id,'1');
+        }
+
+        $('easylb-fon').style.display = 'none';
+    }
+    function setCookie (name, value, expires, path, domain, secure) {
+        document.cookie = name + "=" + escape(value) +
+            ((expires) ? "; expires=" + expires : "") +
+            ((path) ? "; path=" + path : "") +
+            ((domain) ? "; domain=" + domain : "") +
+            ((secure) ? "; secure" : "");
+    }
+
+    function getCookie(name) {
+        var cookie = " " + document.cookie;
+        var search = " " + name + "=";
+        var setStr = null;
+        var offset = 0;
+        var end = 0;
+        if (cookie.length > 0) {
+            offset = cookie.indexOf(search);
+            if (offset != -1) {
+                offset += search.length;
+                end = cookie.indexOf(";", offset)
+                if (end == -1) {
+                    end = cookie.length;
+                }
+                setStr = unescape(cookie.substring(offset, end));
+            }
+        }
+        return(setStr);
+    }
+</script>
