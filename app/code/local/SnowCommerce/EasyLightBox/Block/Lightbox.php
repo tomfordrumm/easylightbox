@@ -16,6 +16,11 @@ class SnowCommerce_EasyLightBox_Block_Lightbox extends Mage_Core_Block_Template{
     }
 
     public function getActionForForm($action){
-        
+        if ($action == 'mailchimp'){
+            $apikey = Mage::getStoreConfig('easylb/mailchimp/apikey');
+            $listId = Mage::getStoreConfig('easylb/mailchimp/list_id');
+            $http = 'http://<dc>.api.mailchimp.com/1.3/?method=listMemberInfo&apikey='.$apikey.'';
+
+        }
     }
 }

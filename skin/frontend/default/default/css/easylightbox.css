@@ -1,8 +1,66 @@
-.easylb{
+.easylbfon{
     position: absolute;
-    top: 45%;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:10000;
+    background:rgba(0,0,0, .2);
+}
+.easylb {
+    position: absolute;
+	top:0;
+	left:0;
+	/*width:100%;*/
+	/*height:100%;*/
+	z-index:10000;
+	background:rgba(0,0,0, .2);
+    /*top: 45%;
     left: 45%;
     width: 400px;
     height: 400px;
-    z-index: 10000000;
+    z-index: 10000000;*/
+}
+.easylb .sc_lightbox {
+	position:absolute;
+	top:300px;
+	left:50%;
+	width:400px;
+	min-height:200px;
+	margin-left:-210px;
+	z-index:100000;
+	background:#fff;
+	padding:20px;
+	box-shadow:0 0 5px rgba(0,0,0,.3);
+}
+.easylb .sc_lightbox .sc_lightbox__close {
+	position:absolute;
+	top:0;
+	left:0;
+	color:#fff;
+	font-weight:bold;
+	width:20px;
+	height:20px;
+	background:#ccc;
+}
+.easylb .sc_lightbox .sc_lightbox__content {
+    height: 130px;
+	margin:0 0 20px;
+}
+.easylb .sc_lightbox .sc_lightbox__form .sc-lightbox__form__field{
+	height:28px;
+	line-height:28px;
+	font-size:18px;
+	padding:5px;
+	border:1px solid #ccc;
+	background:#fff;
+}
+.easylb .sc_lightbox .sc_lightbox__form .sc-lightbox__form__btn{
+	height:30px;
+	line-height:28px;
+	font-size:18px;
+	padding:5px 15px;
+	border:0;
+	background:#ccc;
+	color:#000;
 }

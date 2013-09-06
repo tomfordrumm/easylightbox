@@ -39,40 +39,12 @@ class SnowCommerce_EasyLightBox_Adminhtml_LightboxController extends Mage_Adminh
     }
 
     public function saveAction(){
-        $data = $this->getRequest()->getParams();
-//        var_dump($data); exit;
+//        $redirectBack   = $this->getRequest()->getParam('back', false);
+        $id             = $this->getRequest()->getParam('entity_id');
+        $data           = $this->getRequest()->getParams();
         $model = Mage::getModel('sc_easylb/lightbox');
-        if ($data['entity_id']) {
-            $model->load($data['entity_id']);
-        }
-
-
-        if(isset($_FILES['transparency']['name']) and (file_exists($_FILES['transparency']['tmp_name']))) {
-            try {
-                $uploader = new Varien_File_Uploader('transparency');
-                $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png')); // or pdf or anything
-
-
-                $uploader->setAllowRenameFiles(false);
-
-                // setAllowRenameFiles(true) -> move your file in a folder the magento way
-                // setAllowRenameFiles(true) -> move your file directly in the $path folder
-                $uploader->setFilesDispersion(false);
-
-                $path = Mage::getBaseDir('media') . DS ;
-
-                $uploader->save($path, $_FILES['transparency']['name']);
-
-                $data['transparency'] = $_FILES['transparency']['name'];
-            }catch(Exception $e) {
-
-            }
-        }else {
-
-            if(isset($data['transparency']['delete']) && $data['transparency']['delete'] == 1)
-                $data['transparency'] = '';
-            else
-                unset($data['transparency']);
+        if ($id) {
+            $model->load($id);
         }
 
         if(isset($_FILES['logo']['name']) and (file_exists($_FILES['logo']['tmp_name']))) {
@@ -131,8 +103,16 @@ class SnowCommerce_EasyLightBox_Adminhtml_LightboxController extends Mage_Adminh
         }
 
         $model->setData($data);
+//        var_dump($model); exit;
         $model->save();
 
-        $this->_redirect('*/*/index');
+//        if ($redirectBack) {
+//            $this->_redirect('*/*/edit', array(
+//                'id'    => $data['entity_id'],
+//                '_current'=>true
+//            ));
+//        } else {
+            $this->_redirect('*/*/');
+//        }
     }
 }

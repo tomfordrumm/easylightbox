@@ -13,6 +13,15 @@
                 </snowcommerce_easylightbox>
             </updates>
         </layout>
+        <routers>
+            <esaylb>
+                <use>standard</use>
+                <args>
+                    <module>SnowCommerce_EasyLightBox</module>
+                    <frontName>easylb</frontName>
+                </args>
+            </esaylb>
+        </routers>
     </frontend>
     <global>
         <models>

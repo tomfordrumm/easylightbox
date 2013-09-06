@@ -117,10 +117,11 @@ class SnowCommerce_EasyLightBox_Block_Adminhtml_Edit_Tab_Main
             'required'  => true,
         ));
 
-        $fieldset->addField('transparency', 'image', array(
+        $fieldset->addField('transparency', 'text', array(
             'name'      => 'transparency',
             'label'     => Mage::helper('sc_easylb')->__('Transparency'),
             'title'     => Mage::helper('sc_easylb')->__('Transparency'),
+            'note'      => 'From 0 to 1 (Example: 0.6)'
 //            'required'  => true,
         ));
 

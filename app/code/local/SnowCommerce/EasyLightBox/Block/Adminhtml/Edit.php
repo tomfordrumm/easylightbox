@@ -15,6 +15,12 @@ class SnowCommerce_EasyLightBox_Block_Adminhtml_Edit extends Mage_Adminhtml_Bloc
         parent::__construct();
 
         $this->_updateButton('save','label',$this->__('Save Light Box'));
+//        $this->_addButton('saveancont', array(
+//            'label'     => Mage::helper('adminhtml')->__('Save and Continue edit'),
+//            'onclick'   => 'saveAndContinueEdit(\'' . $this->getSaveAndContinueUrl() . '\')',
+//            'class'     => 'save',
+//        ), -1);
+
         $this->_updateButton('delete','label',$this->__('Delete Light Box'));
     }
 
@@ -36,5 +42,14 @@ class SnowCommerce_EasyLightBox_Block_Adminhtml_Edit extends Mage_Adminhtml_Bloc
     public function getProductsJson()
     {
         return '{}';
+    }
+
+    public function getSaveAndContinueUrl()
+    {
+        return $this->getUrl('*/*/save', array(
+            '_current'   => true,
+            'back'       => 'edit',
+            'active_tab' => null
+        ));
     }
 }

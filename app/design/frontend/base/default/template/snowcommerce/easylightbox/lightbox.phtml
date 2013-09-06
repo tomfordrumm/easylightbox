@@ -8,42 +8,42 @@
  */
 $lightboxes = $this->getLightboxes();
 $fontes = array(
-    '1' => '12px',
-    '2' => '16px',
-    '3' => '24px'
+    '1' => Mage::getStoreConfig('easylb/fontsizes/first'),
+    '2' => Mage::getStoreConfig('easylb/fontsizes/second'),
+    '3' => Mage::getStoreConfig('easylb/fontsizes/third')
 );
 ?>
 <?php foreach ($lightboxes as $lightbox): ?>
-<div class="easylb" id='easylb-fon' style="display: none" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')">
-    <div class="sc_lightbox" id="lightbox-<?php echo$lightbox->getId() ?>" style="background: <?php echo $lightbox->getBodyColor() ?>">
-        <div class="close" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')">X</div>
-        <div class="content-lightbox">
+<div class="easylbfon" style="display: none" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')"></div>
+<div class="easylb" id='easylb-fon' style="display: none" >
+    <div class="sc_lightbox" id="lightbox-<?php echo$lightbox->getId() ?>" style="background: <?php echo $lightbox->getBodyColor() ?>; opacity: <?php echo $lightbox->getTransparency() ?>">
+        <div class="sc_lightbox__close" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')">X</div>
+        <div class="sc_lightbox__content">
             <div class="title" style="color: <?php echo $lightbox->getTitleTextColor() ?>; <?php if ($lightbox->getTitleTextBold() == 1){echo "font-weight:bold;";} ?> font-size: <?php echo $fontes[$lightbox->getTitleTextSize()] ?>">
                 <span><?php echo $lightbox->getTitleText() ?></span>
             </div>
-            <div class="addition-text" style="color: <?php echo $lightbox->getActionTextColor(); ?> <?php if ($lightbox->getActionTextBold() == 1){echo "font-weight:bold";} ?>">
+            <div class="addition-text" style="font-size: <?php echo $fontes[1];?>;color: <?php echo $lightbox->getActionTextColor(); ?> <?php if ($lightbox->getActionTextBold() == 1){echo "font-weight:bold";} ?>">
                 <span ><?php echo $lightbox->getActionText() ?></span>
             </div>
         </div>
-        <form action="<?php $this->getActionForForm($lightbox->getSignUpBox()); ?>" method="post">
-            <input type="email" title="Email Address" placeholder="Email Address">
-            <button type="submit" style="background: <?php echo $lightbox->getActionButtonColor() ?>; color: <?php echo $lightbox->getActionButtonTextColor() ?>"><?php echo $lightbox->getActionButton()?></button>
-        </form>
+		<div class="sc_lightbox__form">
+	        <form action="<?php echo $this->getBaseUrl().'easylb/lightbox/send/method/'.$lightbox->getSignUpBox(); ?>" method="post">
+	            <input name="email" type="email" title="Email Address" placeholder="Email Address" class="sc-lightbox__form__field"/>
+	            <button class="sc-lightbox__form__btn" type="submit" style="background: <?php echo $lightbox->getActionButtonColor() ?>; color: <?php echo $lightbox->getActionButtonTextColor() ?>"><?php echo $lightbox->getActionButton()?></button>
+	        </form>
+		</div>
     </div>
-        <script>
+    <script>
+        Event.observe(window,'load',function(){
+            var cookie = getCookie('<?php echo 'lightbox-'.$lightbox->getId()?>');
+            if (!cookie){
+                setTimeout(function(){
+                    $('easylb-fon').style.display = 'block';
+                },'<?php if ($lightbox->getTimeout() != null){ echo $lightbox->getTimeout();} else {echo '0';} ?>')
 
-            Event.observe(window,'load',function(){
-                var cookie = getCookie('<?php echo 'lightbox-'.$lightbox->getId()?>');
-                if (!cookie){
-                    setTimeout(function(){
-                        $('easylb-fon').style.display = 'block';
-                    },'<?php if ($lightbox->getTimeout() != null){ echo $lightbox->getTimeout();} else {echo '0';} ?>')
-
-                }
-            });
-
-
-        </script>
+            }
+        });
+    </script>
 </div>
 <?php endforeach;?>
 <script>

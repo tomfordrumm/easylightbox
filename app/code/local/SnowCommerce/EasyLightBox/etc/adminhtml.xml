@@ -13,4 +13,23 @@
             </children>
         </snowcommerce>
     </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <easylb>
+                                        <title>Easy Light Box</title>
+                                    </easylb>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
 </config>

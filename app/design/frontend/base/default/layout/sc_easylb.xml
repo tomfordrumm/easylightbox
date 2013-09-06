@@ -8,7 +8,7 @@
         </reference>
         <reference name="content">
             <block type="sc_easylb/lightbox" name="lightbox_front"
-                   template="snowcommerce/easylightbox/lightbox.phtml"/>
+                   template="snowcommerce/easylightbox/lightbox.phtml" before="all"/>
         </reference>
     </default>
 </layout>
