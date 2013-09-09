@@ -1,6 +1,7 @@
-app/code/local/SnowCommerce/EasyLightBox app/code/local/SnowCommerce/EasyLightBox
-app/design/adminhtml/default/default/layout/sc_easylb.xml app/design/adminhtml/default/default/layout/sc_easylb.xml
-app/design/frontend/base/default/layout/sc_easylb.xml app/design/frontend/base/default/layout/sc_easylb.xml
-app/design/frontend/base/default/template/snowcommerce/easylightbox app/design/frontend/base/default/template/snowcommerce/easylightbox
-app/etc/modules/SnowCommerce_EasyLightBox.xml app/etc/modules/SnowCommerce_EasyLightBox.xml
-skin/frontend/default/default/css/easylightbox.css skin/frontend/default/default/css/easylightbox.css
+app/code/local/SnowCommerce/IcePop app/code/local/SnowCommerce/IcePop
+app/design/adminhtml/default/default/layout/sc_icepop.xml app/design/adminhtml/default/default/layout/sc_icepop.xml
+app/design/frontend/base/default/layout/sc_icepop.xml app/design/frontend/base/default/layout/sc_icepop.xml
+app/design/frontend/base/default/template/snowcommerce/icepop/lightbox.phtml app/design/frontend/base/default/template/snowcommerce/icepop/lightbox.phtml
+app/etc/modules/SnowCommerce_IcePop.xml app/etc/modules/SnowCommerce_IcePop.xml
+skin/frontend/default/default/css/icepop.css skin/frontend/default/default/css/icepop.css
+skin/frontend/default/default/css/icepop.css skin/frontend/default/default/css/icepop.css

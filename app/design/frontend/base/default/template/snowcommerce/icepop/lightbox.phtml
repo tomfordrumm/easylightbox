@@ -1,0 +1,97 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: svatoslavzilicev
+ * Date: 05.09.13
+ * Time: 13:14
+ * To change this template use File | Settings | File Templates.
+ */
+$lightboxes = $this->getLightboxes();
+$fontes = array(
+    '1' => Mage::getStoreConfig('icepop/fontsizes/first'),
+    '2' => Mage::getStoreConfig('icepop/fontsizes/second'),
+    '3' => Mage::getStoreConfig('icepop/fontsizes/third')
+);
+$mediaUrl = Mage::getBaseUrl('media');
+?>
+<?php foreach ($lightboxes as $lightbox): ?>
+
+<div class="easylb" id="easylb-fon" style="display: none">
+	<div class="easylbfon" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')"></div>
+    <div class="sc_lightbox" id="lightbox-<?php echo$lightbox->getId() ?>" style="background: <?php if ($lightbox->getBanner()){ echo "url('".$mediaUrl.'/'.$lightbox->getBanner()."')";} ?> <?php echo $lightbox->getBodyColor() ?>; opacity: <?php echo $lightbox->getTransparency() ?>">
+        <div class="sc_lightbox__close" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')"></div>
+        <div class="sc_lightbox__content">
+            <div class="sc_lightbox__title" style="color: <?php echo $lightbox->getTitleTextColor() ?>; <?php if ($lightbox->getTitleTextBold() == 1){echo "font-weight:bold;";} ?> font-size: <?php echo $fontes[$lightbox->getTitleTextSize()] ?>">
+                <span><?php echo $lightbox->getTitleText() ?></span>
+            </div>
+            <div class="sc_lightbox__addition-text" style="font-size: <?php echo $fontes[1];?>;color: <?php echo $lightbox->getActionTextColor(); ?> <?php if ($lightbox->getActionTextBold() == 1){echo "font-weight:bold";} ?>">
+                <span ><?php echo $lightbox->getActionText() ?></span>
+            </div>
+        </div>
+		<div class="sc_lightbox__form">
+	        <form id="form-<?php echo $lightbox->getId(); ?>" action="<?php echo $this->getBaseUrl().'icepop/lightbox/send/method/'.$lightbox->getSignUpBox(); ?>" method="post">
+	            <input name="email" type="email" title="Email Address" placeholder="Email Address" class="sc-lightbox__form__field" autofocus />
+	            <button class="sc-lightbox__form__btn" type="submit" style="background: <?php echo $lightbox->getActionButtonColor() ?>; color: <?php echo $lightbox->getActionButtonTextColor() ?>"><?php echo $lightbox->getActionButton()?></button>
+	        </form>
+		</div>
+    </div>
+    <script>
+        Event.observe(window,'load',function(){
+            var cookie = getCookie('<?php echo 'lightbox-'.$lightbox->getId()?>');
+            if (!cookie){
+                setTimeout(function(){
+                    $('easylb-fon').style.display = 'block';
+                },'<?php if ($lightbox->getTimeout() != null){ echo $lightbox->getTimeout();} else {echo '0';} ?>')
+
+            }
+        });
+        $('form-<?php echo $lightbox->getId(); ?>').onsubmit = function(){
+            <?php if ($lightbox->getTtlCookies()): ?>
+            var date = new Date( new Date().getTime() + <?php echo $lightbox->getTtlCookies() ?>*1000 );
+            setCookie('lightbox-'+'<?php echo $lightbox->getId(); ?>','1',date.toUTCString());
+            <?php else: ?>
+            setCookie('lightbox-'+'<?php echo $lightbox->getId(); ?>','1');
+            <?php endif; ?>
+        };
+    </script>
+</div>
+<?php endforeach;?>
+<script>
+    function closeELB(id,ttl){
+        if (ttl){
+            var date = new Date( new Date().getTime() + ttl*1000 );
+            setCookie('lightbox-'+id,'1',date.toUTCString());
+        } else {
+            setCookie('lightbox-'+id,'1');
+        }
+
+        $('easylb-fon').style.display = 'none';
+    }
+    function setCookie (name, value, expires, path, domain, secure) {
+        document.cookie = name + "=" + escape(value) +
+            ((expires) ? "; expires=" + expires : "") +
+            ((path) ? "; path=" + path : "") +
+            ((domain) ? "; domain=" + domain : "") +
+            ((secure) ? "; secure" : "");
+    }
+
+    function getCookie(name) {
+        var cookie = " " + document.cookie;
+        var search = " " + name + "=";
+        var setStr = null;
+        var offset = 0;
+        var end = 0;
+        if (cookie.length > 0) {
+            offset = cookie.indexOf(search);
+            if (offset != -1) {
+                offset += search.length;
+                end = cookie.indexOf(";", offset)
+                if (end == -1) {
+                    end = cookie.length;
+                }
+                setStr = unescape(cookie.substring(offset, end));
+            }
+        }
+        return(setStr);
+    }
+</script>

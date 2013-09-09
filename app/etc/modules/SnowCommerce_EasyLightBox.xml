@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <modules>
-        <SnowCommerce_EasyLightBox>
-            <active>true</active>
-            <codePool>local</codePool>
-        </SnowCommerce_EasyLightBox>
-    </modules>
-</config>
