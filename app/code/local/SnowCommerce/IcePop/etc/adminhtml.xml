@@ -5,11 +5,11 @@
             <title>SnowCommerce</title>
             <sort_order>15</sort_order>
             <children>
-                <methods>
+                <icepop>
                     <title module="sc_icepop">SC Ice Pop</title>
                     <sort_order>1100</sort_order>
                     <action>*/lightbox</action>
-                </methods>
+                </icepop>
             </children>
         </snowcommerce>
     </menu>
@@ -21,9 +21,9 @@
                         <children>
                             <config>
                                 <children>
-                                    <icepop>
+                                    <easylb>
                                         <title>SC Ice Pop</title>
-                                    </icepop>
+                                    </easylb>
                                 </children>
                             </config>
                         </children>
