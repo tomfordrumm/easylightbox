@@ -151,9 +151,17 @@ class SnowCommerce_IcePop_Block_Adminhtml_Edit_Tab_Main
 
         $fieldset->addField('ttl_cookies', 'text', array(
             'name'      => 'ttl_cookies',
-            'label'     => Mage::helper('sc_icepop')->__('Time ti live cookies '),
-            'title'     => Mage::helper('sc_icepop')->__('Time ti live cookies '),
+            'label'     => Mage::helper('sc_icepop')->__('Time to live cookies '),
+            'title'     => Mage::helper('sc_icepop')->__('Time to live cookies '),
             'note'      => 'In seconds',
+//            'required'  => true,
+        ));
+
+        $fieldset->addField('round_corner', 'text', array(
+            'name'      => 'round_corner',
+            'label'     => Mage::helper('sc_icepop')->__('Set Round Corner '),
+            'title'     => Mage::helper('sc_icepop')->__('Set Round Corner '),
+            'note'      => 'Example: 4px',
 //            'required'  => true,
         ));
 
@@ -193,7 +201,7 @@ class SnowCommerce_IcePop_Block_Adminhtml_Edit_Tab_Main
             'name'      => 'title_text_bold',
             'label'     => Mage::helper('sc_icepop')->__('Is Bold?'),
             'title'     => Mage::helper('sc_icepop')->__('Is Bold?'),
-            'value'     => '1',
+            'onclick'   => 'this.value = this.checked ? 1 : 0;',
 //            'required'  => true,
         ));
 
@@ -216,11 +224,32 @@ class SnowCommerce_IcePop_Block_Adminhtml_Edit_Tab_Main
             'required'  => true,
         ));
 
+        $fieldset3->addField('action_text_size', 'select', array(
+            'name'      => 'action_text_size',
+            'label'     => Mage::helper('sc_icepop')->__('Action Text Size'),
+            'title'     => Mage::helper('sc_icepop')->__('Action Text Size'),
+            'required'  => true,
+            'values'   => array(
+                array(
+                    'value' => 1,
+                    'label' => Mage::helper('sc_icepop')->__('Small'),
+                ),
+                array(
+                    'value' => 2,
+                    'label' => Mage::helper('sc_icepop')->__('Medium'),
+                ),
+                array(
+                    'value' => 3,
+                    'label' => Mage::helper('sc_icepop')->__('Big'),
+                ),
+            )
+        ));
+
         $fieldset3->addField('action_text_bold', 'checkbox', array(
             'name'      => 'action_text_bold',
             'label'     => Mage::helper('sc_icepop')->__('Is Bold?'),
             'title'     => Mage::helper('sc_icepop')->__('Is Bold?'),
-            'value'     => '1',
+            'onclick'   => 'this.value = this.checked ? 1 : 0;',
 //            'required'  => true,
         ));
 
@@ -258,8 +287,10 @@ class SnowCommerce_IcePop_Block_Adminhtml_Edit_Tab_Main
             'required'  => true,
             'note'      => 'Example: #ffffff'
         ));
-
-
+        $ttb = $model->getData('title_text_bold');
+        $atb = $model->getData('action_text_bold');
+        $form->getElement('title_text_bold')->setIsChecked(!empty($ttb));
+        $form->getElement('action_text_bold')->setIsChecked(!empty($atb));
         $form->setValues($model->getData());
 //        $form->setUseContainer(true);
         $this->setForm($form);

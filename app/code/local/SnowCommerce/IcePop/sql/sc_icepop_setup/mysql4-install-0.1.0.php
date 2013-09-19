@@ -33,7 +33,8 @@ CREATE TABLE {$this->getTable('sc_icepop')} (
   body_color varchar(255),
   timeout varchar(255),
   ttl_cookies varchar(255),
-
+  action_text_size varchar(255),
+  round_corner varchar (255),
   PRIMARY KEY (`entity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ");

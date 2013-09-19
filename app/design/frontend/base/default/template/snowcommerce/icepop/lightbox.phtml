@@ -18,13 +18,13 @@ $mediaUrl = Mage::getBaseUrl('media');
 
 <div class="easylb" id="easylb-fon" style="display: none">
 	<div class="easylbfon" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')"></div>
-    <div class="sc_lightbox" id="lightbox-<?php echo$lightbox->getId() ?>" style="background: <?php if ($lightbox->getBanner()){ echo "url('".$mediaUrl.'/'.$lightbox->getBanner()."')";} ?> <?php echo $lightbox->getBodyColor() ?>; opacity: <?php echo $lightbox->getTransparency() ?>">
+    <div class="sc_lightbox" id="lightbox-<?php echo$lightbox->getId() ?>" style="background: RGBA(<?php echo $this->hex2rgb($lightbox->getBodyColor()) ?>,<?php echo $lightbox->getTransparency() ?>)<?php if ($lightbox->getBanner()){ echo "url('".$mediaUrl.'/'.$lightbox->getBanner()."')";} ?> ; border-radius: <?php echo $lightbox->getRoundCorner() ?>;">
         <div class="sc_lightbox__close" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')"></div>
         <div class="sc_lightbox__content">
             <div class="sc_lightbox__title" style="color: <?php echo $lightbox->getTitleTextColor() ?>; <?php if ($lightbox->getTitleTextBold() == 1){echo "font-weight:bold;";} ?> font-size: <?php echo $fontes[$lightbox->getTitleTextSize()] ?>">
                 <span><?php echo $lightbox->getTitleText() ?></span>
             </div>
-            <div class="sc_lightbox__addition-text" style="font-size: <?php echo $fontes[1];?>;color: <?php echo $lightbox->getActionTextColor(); ?> <?php if ($lightbox->getActionTextBold() == 1){echo "font-weight:bold";} ?>">
+            <div class="sc_lightbox__addition-text" style="font-size: <?php echo $fontes[1];?>;color: <?php echo $lightbox->getActionTextColor(); ?>; <?php if ($lightbox->getActionTextBold() == 1){echo "font-weight:bold";} ?>">
                 <span ><?php echo $lightbox->getActionText() ?></span>
             </div>
         </div>
