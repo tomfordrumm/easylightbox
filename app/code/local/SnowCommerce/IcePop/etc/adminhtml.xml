@@ -21,9 +21,9 @@
                         <children>
                             <config>
                                 <children>
-                                    <easylb>
+                                    <icepop>
                                         <title>SC Ice Pop</title>
-                                    </easylb>
+                                    </icepop>
                                 </children>
                             </config>
                         </children>

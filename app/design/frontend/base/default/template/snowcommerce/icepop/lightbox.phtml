@@ -18,22 +18,29 @@ $mediaUrl = Mage::getBaseUrl('media');
 
 <div class="easylb" id="easylb-fon" style="display: none">
 	<div class="easylbfon" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')"></div>
-    <div class="sc_lightbox" id="lightbox-<?php echo$lightbox->getId() ?>" style="background: RGBA(<?php echo $this->hex2rgb($lightbox->getBodyColor()) ?>,<?php echo $lightbox->getTransparency() ?>)<?php if ($lightbox->getBanner()){ echo "url('".$mediaUrl.'/'.$lightbox->getBanner()."')";} ?> ; border-radius: <?php echo $lightbox->getRoundCorner() ?>;">
-        <div class="sc_lightbox__close" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')"></div>
-        <div class="sc_lightbox__content">
-            <div class="sc_lightbox__title" style="color: <?php echo $lightbox->getTitleTextColor() ?>; <?php if ($lightbox->getTitleTextBold() == 1){echo "font-weight:bold;";} ?> font-size: <?php echo $fontes[$lightbox->getTitleTextSize()] ?>">
-                <span><?php echo $lightbox->getTitleText() ?></span>
-            </div>
-            <div class="sc_lightbox__addition-text" style="font-size: <?php echo $fontes[1];?>;color: <?php echo $lightbox->getActionTextColor(); ?>; <?php if ($lightbox->getActionTextBold() == 1){echo "font-weight:bold";} ?>">
-                <span ><?php echo $lightbox->getActionText() ?></span>
-            </div>
-        </div>
-		<div class="sc_lightbox__form">
-	        <form id="form-<?php echo $lightbox->getId(); ?>" action="<?php echo $this->getBaseUrl().'icepop/lightbox/send/method/'.$lightbox->getSignUpBox(); ?>" method="post">
-	            <input name="email" type="email" title="Email Address" placeholder="Email Address" class="sc-lightbox__form__field" autofocus />
-	            <button class="sc-lightbox__form__btn" type="submit" style="background: <?php echo $lightbox->getActionButtonColor() ?>; color: <?php echo $lightbox->getActionButtonTextColor() ?>"><?php echo $lightbox->getActionButton()?></button>
-	        </form>
-		</div>
+    <div class="sc_lightbox" id="lightbox-<?php echo$lightbox->getId() ?>" style="background: RGBA(<?php echo $this->hex2rgb($lightbox->getBodyColor()) ?>,<?php echo $lightbox->getTransparency() ?>); border-radius: <?php echo $lightbox->getRoundCorner() ?>;">
+	    <div class="sc_lightbox__banner" <?php if ($lightbox->getBanner()) echo 'style="background:url('.$mediaUrl.'/'.$lightbox->getBanner().') no-repeat; background-position: bottom right;"';?> >
+            <div class="sc_lightbox__close" onclick="closeELB('<?php echo $lightbox->getId() ?>','<?php echo $lightbox->getTtlCookies() ?>')"></div>
+	        <div class="sc_lightbox__content">
+	            <div class="sc_lightbox__title" style="color: <?php echo $lightbox->getTitleTextColor() ?>; <?php if ($lightbox->getTitleTextBold() == 1){echo "font-weight:bold;";} ?> font-size: <?php echo $fontes[$lightbox->getTitleTextSize()] ?>">
+	                <span><?php echo $lightbox->getTitleText() ?></span>
+	            </div>
+	            <div class="sc_lightbox__addition-text" style="font-size: <?php echo $fontes[1];?>;color: <?php echo $lightbox->getActionTextColor(); ?>; <?php if ($lightbox->getActionTextBold() == 1){echo "font-weight:bold";} ?>">
+	                <span ><?php echo $lightbox->getActionText() ?></span>
+	            </div>
+	        </div>
+			<div class="sc_lightbox__form">
+		        <form id="form-<?php echo $lightbox->getId(); ?>" action="<?php echo $this->getBaseUrl().'icepop/lightbox/send/method/'.$lightbox->getSignUpBox(); ?>" method="post">
+		            <input name="email" type="email" title="Email Address" placeholder="Email Address" class="sc-lightbox__form__field" autofocus />
+		            <button class="sc-lightbox__form__btn" type="submit" style="background: <?php echo $lightbox->getActionButtonColor() ?>; color: <?php echo $lightbox->getActionButtonTextColor() ?>"><?php echo $lightbox->getActionButton()?></button>
+		        </form>
+			</div>
+			<?php if ($lightbox->getLogo()): ?>
+			<div class="sc_lightbox__logo">
+				<img src="<?php echo $mediaUrl.'/'.$lightbox->getLogo();?>"/>
+			</div>
+			<?php endif;?>
+	    </div>
     </div>
     <script>
         Event.observe(window,'load',function(){

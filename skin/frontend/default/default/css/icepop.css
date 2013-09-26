@@ -86,3 +86,10 @@
 	color:#000;
 	border-radius: 3px;
 }
+.easylb .sc_lightbox {}
+.sc_lightbox__logo{
+   text-align: left;
+}
+.sc_lightbox__banner{
+    background-position: bottom right;
+}

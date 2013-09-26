@@ -48,7 +48,7 @@
                 <fontsizes>
                     <label>Font Sizes</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>1</sort_order>
+                    <sort_order>2</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -82,6 +82,52 @@
                         </third>
                     </fields>
                 </fontsizes>
+                <img>
+                    <label>Image Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <width_banner>
+                            <label>Max width for banner</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Example: 24px</comment>
+                        </width_banner>
+                        <height_banner>
+                            <label>Max height for banner</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Example: 24px</comment>
+                        </height_banner>
+                        <width_logo>
+                            <label>Max width for logo</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Example: 24px</comment>
+                        </width_logo>
+                        <height_logo>
+                            <label>Max height for logo</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Example: 24px</comment>
+                        </height_logo>
+                    </fields>
+                </img>
             </groups>
         </icepop>
     </sections>
