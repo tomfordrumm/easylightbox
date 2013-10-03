@@ -76,7 +76,7 @@ class SnowCommerce_IcePop_Adminhtml_LightboxController extends Mage_Adminhtml_Co
                         $data['logo'] = $_FILES['logo']['name'];
                     }
                 } catch (Exception $e) {
-
+                    Mage::log($e->getMessage());
                 }
             } else {
 
@@ -109,7 +109,7 @@ class SnowCommerce_IcePop_Adminhtml_LightboxController extends Mage_Adminhtml_Co
                         $data['banner'] = $_FILES['banner']['name'];
                     }
                 } catch (Exception $e) {
-
+                    Mage::log($e->getMessage());
                 }
             } else {
 
