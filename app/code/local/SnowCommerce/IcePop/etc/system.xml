@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 <config>
+    <tabs>
+        <snowcommerce translate="label" module="adminhtml">
+            <label>Snow Commerce</label>
+            <sort_order>1000</sort_order>
+        </snowcommerce>
+    </tabs>
     <sections>
         <icepop>
             <label>SC Ice Pop Options</label>
-            <tab>cpwms</tab>
+            <tab>snowcommerce</tab>
             <frontend_type>text</frontend_type>
             <sort_order>7002</sort_order>
             <show_in_default>1</show_in_default>

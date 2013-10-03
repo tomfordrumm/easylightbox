@@ -118,8 +118,6 @@ class SnowCommerce_IcePop_Adminhtml_LightboxController extends Mage_Adminhtml_Co
                 else
                     unset($data['banner']);
             }
-
-            Mage::log($data);
             $model->setData($data);
             $model->save();
             $this->_getSession()->addSuccess($this->__('Lightbox successfuly saved'));
