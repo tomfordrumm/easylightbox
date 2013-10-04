@@ -9,26 +9,29 @@
 class SnowCommerce_IcePop_LightboxController extends Mage_Core_Controller_Front_Action{
 
     public function sendAction(){
+        $flag               = 'NO';
         $session            = Mage::getSingleton('core/session');
         $method = $this->getRequest()->getParam('method');
         if ($method == 'mailchimp'){
             $status =  Mage::getModel('sc_icepop/lightbox')->getMailChimp($this->getRequest()->getParam('email'));
             if ($status){
-                $session->addSuccess($this->__('Thank you for your subscription.'));
+                $flag = $this->__('Thank you for your subscription.');
+//                $flag = 'YES';
             } else {
-                $session->addError($this->__('Something wrong. Please, contact us.'));
+                $flag = $this->__('Something wrong. Please, contact us.');
             }
         }
         if ($method == 'magento'){
             $status = Mage::getModel('newsletter/subscriber')->subscribe($this->getRequest()->getParam('email'));
             if ($status == Mage_Newsletter_Model_Subscriber::STATUS_NOT_ACTIVE) {
-                $session->addSuccess($this->__('Confirmation request has been sent.'));
+                $flag = $this->__('Confirmation request has been sent.');
+//                $flag = 'YES';
             }
             else {
-                $session->addSuccess($this->__('Thank you for your subscription.'));
+                $flag = $this->__('Thank you for your subscription.');
             }
         }
 
-        $this->_redirect('home');
+        echo $flag;
     }
 }

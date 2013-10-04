@@ -30,9 +30,9 @@ $mediaUrl = Mage::getBaseUrl('media');
 	            </div>
 	        </div>
 			<div class="sc_lightbox__form">
-		        <form id="form-<?php echo $lightbox->getId(); ?>" action="<?php echo $this->getBaseUrl().'icepop/lightbox/send/method/'.$lightbox->getSignUpBox(); ?>" method="post">
+		        <form id="form-<?php echo $lightbox->getId(); ?>" method="post">
 		            <input name="email" type="email" title="Email Address" placeholder="Email Address" class="sc-lightbox__form__field" autofocus />
-		            <button class="sc-lightbox__form__btn" type="submit" style="background: <?php echo $lightbox->getActionButtonColor() ?>; color: <?php echo $lightbox->getActionButtonTextColor() ?>"><?php echo $lightbox->getActionButton()?></button>
+		            <button class="sc-lightbox__form__btn" type="submit" style="background: <?php echo $lightbox->getActionButtonColor() ?>; color: <?php echo $lightbox->getActionButtonTextColor() ?>" onclick="sentSubscriber(); return false;"><?php echo $lightbox->getActionButton()?></button>
 		        </form>
 			</div>
 			<?php if ($lightbox->getLogo()): ?>
@@ -52,14 +52,24 @@ $mediaUrl = Mage::getBaseUrl('media');
 
             }
         });
-        $('form-<?php echo $lightbox->getId(); ?>').onsubmit = function(){
-            <?php if ($lightbox->getTtlCookies()): ?>
-            var date = new Date( new Date().getTime() + <?php echo $lightbox->getTtlCookies() ?>*1000 );
-            setCookie('lightbox-'+'<?php echo $lightbox->getId(); ?>','1',date.toUTCString());
-            <?php else: ?>
-            setCookie('lightbox-'+'<?php echo $lightbox->getId(); ?>','1');
-            <?php endif; ?>
-        };
+
+        function sentSubscriber(){
+            var url = '<?php echo $this->getBaseUrl().'icepop/lightbox/send/method/'.$lightbox->getSignUpBox(); ?>';
+            new Ajax.Request(url,{
+               method:'post',
+               parameters:$('form-<?php echo $lightbox->getId(); ?>').serialize(),
+               onSuccess: function(transport){
+                   <?php if ($lightbox->getTtlCookies()): ?>
+                   var date = new Date( new Date().getTime() + <?php echo $lightbox->getTtlCookies() ?>*1000 );
+                   setCookie('lightbox-'+'<?php echo $lightbox->getId(); ?>','1',date.toUTCString());
+                   <?php else: ?>
+                   setCookie('lightbox-'+'<?php echo $lightbox->getId(); ?>','1');
+                   <?php endif; ?>
+                   alert(transport.responseText);
+                   $('easylb-fon').style.display = 'none';
+               }
+            });
+        }
     </script>
 </div>
 <?php endforeach;?>
